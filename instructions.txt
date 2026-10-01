@@ -1,0 +1,328 @@
+Instructions & Lessons Learned
+===============================
+Location: [PROJECTS_DIR]/Current/instructions.txt
+Updated: 2026-09-01
+
+[1] GUI Toolkits on This Machine
+- tkinter is BROKEN: missing libtk8.6.so on Arch Linux with Python 3.14
+- Use GTK3 via PyGObject (gi.repository) for GUI popups instead
+- notify-send works for simple notifications
+
+- Uses rolling 24h window from first use, not calendar day
+- GTK popup fires at 33,333.33 with "ok mate" button
+- Lazy-import GUI libs so CLI commands (-t, reset) work headless
+
+- Persistent memory via memory tool (injected each session)
+- Session summaries in "[PROJECTS_DIR]\Current\summary"
+- Memory index in "[PROJECTS_DIR]\Current\mindset.txt"
+
+[4] User Communication Style
+- Short, direct commands — no fluff
+- Expects concise, actionable responses
+- Wants things built fast, tested, and verified
+- Values practical engineering over theoretical explanations
+
+[5] File Conventions
+- "[PROJECTS_DIR]\Current" — active config: persona, summary, memory, mindset, instruction
+- "[PROJECTS_DIR]\backup" — backups: persona.backup, mindset.txt
+
+- NEVER edit or replace existing files/text unless user gives EXPLICIT permission
+- Only APPEND/add new content — never overwrite, patch, or modify existing lines
+- If a mistake is made editing a file, do NOT try to revert it by overwriting — stop and tell the user
+- User said: "never edit the existing files or txt just add ur not allowed to edit it or replace it until unless i say"
+
+[7] Lessons Learned (Self-Improvement)
+- Always predict failure probability before acting
+- Don't repeat tool calls when result already returned (tool loop warning)
+- Memory tool requires exact action names: add/replace/remove — no typos
+- Patch tool needs exact string match — verify content first
+- Never overwrite files to revert changes — stop and report
+- Self-realization: when sequential git clone times out on 90+ repos, ALWAYS switch to parallel (xargs -P5) — this saved the cloning job
+- Verification approach: after any large batch operation, verify by 1) checking .git exists, 2) checking .git/config remote URL matches expected repo, 3) counting actual files (not just folders), 4) cross-checking expected count vs actual count — this caught the folder name collision issue where 94 repos mapped to only 74 folders
+
+[8] NEW AI ONBOARDING — How to Read This Folder
+- Files (read in this order):
+  1. summary.txt — session history and architecture overview (start here)
+  4. instructions.txt — operational instructions and system invariants
+  5. memory.txt — persistent facts, environment info, faults/improvements ledgers
+- NEVER edit files here — only append new content
+- BACKUP folder at "[PROJECTS_DIR]\backup\" is READ-ONLY
+- Storage folder: [PROJECTS_MOUNT]/storage/venv/ — only install packages here
+- Active projects: designated active working copies — original templates are untouched
+- Do NOT touch: Current/ files, backup/ folder, template project folder
+
+|- Always record key title, SHA256 fingerprint, public key string, IdentityFile path, GitHub email
+|- Config file: ~/.ssh/config points IdentityFile to ~/.ssh/user_github_key
+|
+|
+- DO: append findings, update PROJECT_LOG.txt, save lessons in memory tool
+| - Key constraint: classical CV has known issues (vegetation false positives, low-contrast failures, over-counting) — document new bugs as mistakes #16, #17, etc.
+|
+|[10] GitHub Skills Pulls
+| - GitHub skills pulls MUST be saved to: [PROJECTS_DIR]\Github skills\
+| - Path: [PROJECTS_MOUNT]/Github skills/
+| - Each skill goes in its own subfolder: Github skills/<category>/<skill-name>/SKILL.md
+| - Do NOT save GitHub pulls anywhere else — this is the only allowed location
+|
+|[9] Lessons Learned — GeoGov Web Integration
+|- Classical CV + Next.js Web-GIS: OpenCV outputs pixel-space GeoJSON, but web maps need geo-coordinates. Always map pixel coords to a geographic anchor (SITE_CENTER).
+|- Git repo setup: must create repo on GitHub FIRST before `git push` can succeed. SSH key on port 443 is a workaround for blocked port 22.
+|- Next.js plugin pattern: API route can directly exec Python subprocess — no separate backend server needed for localhost.
+|- Always verify localhost: `GET /` → 200, `GET /dashboard` → 200, API route → 405 (POST only) before reporting done.
+|- Swarnendu-Bhattacharjee/GeoGovGadget repo structure is the best reference for Next.js + Leaflet + Turf.js web-GIS setup.
+
+[12] Ponytail Skills — Import & Relocation (2026-09-03)
+|- Found pre-installed ponytail skill in ~/.hermes/skills/software-development/ponytail/ but SKILL.md files were MISSING (directories existed but empty)
+|- Source files located at: "[PROJECTS_DIR]\Github skills\ponytail\ponytail-main\.openclaw\skills\ponytail*/SKILL.md"
+|- 6 skills found: ponytail, ponytail-review, ponytail-audit, ponytail-debt, ponytail-gain, ponytail-help
+|- Action: Deleted empty directories from ~/.hermes/skills/software-development/ponytail/ (removed previous incomplete install)
+|- Action: Created fresh directory "[PROJECTS_DIR]\Hermes SKILLS\" 
+|- Action: Moved all 6 SKILL.md files to new Hermes SKILLS folder via write_file (content ported from .openclaw/skills/ source)
+|- Source GitHub plugin files remain untouched at: "[PROJECTS_DIR]\Github skills\ponytail\ponytail-main\"
+|- Key insight: Ponytail is "lazy senior dev mode" — shortest solution that works, YAGNI, stdlib first, no unrequested abstractions
+
+[13] Skills Directory (2026-09-03)
+|- "[PROJECTS_DIR]\skills\" — contains Anthropic official Claude skills (READ-ONLY reference)
+|- 17 skill folders: academy-guide, algorithmic-art, brand-guidelines, canvas-design, claude-api, discernment-nudge, doc-coauthoring, docx, frontend-design, internal-comms, mcp-builder, pdf, pptx, skill-creator, slack-gif-creator, theme-factory, web-artifacts-builder, webapp-testing, xlsx
+|- Each skill folder has SKILL.md + optional LICENSE.txt + bundled resources (templates, fonts, scripts)
+|- These are NOT ponytail skills — they are separate, official Claude Code skills
+|- Ponytail skills are in "[PROJECTS_DIR]\Hermes SKILLS\" (see section [12])
+|- DO NOT edit or move files in the skills/ folder — this is the source reference
+|- skill-creator skill in here is the official skill for creating new Hermes skills
+
+|- Latest: Added section [19] documenting full skills folder inventory (18 skills, 415 files, 69 dirs)
+|- Latest: Added section [21] documenting claude-skills-collection repo (227 skills catalog, reference only)
+||- Latest: Added section [22] documenting all 94 external repos cloned from README + user requests
+|[22] External Skill Repos Cloned (2026-09-03)
+||- All 92 unique GitHub repo URLs extracted from claude-skills-collection README.md source links (plus 2 additional requested by user = 94 total)
+||- 4,300+ SKILL.md files found across all repos (open-design alone has 100+ templates)
+||- Cloned using: git clone --depth 1 (shallow clone) with 5 parallel background jobs
+||- Background process proc_89d7c474746e was killed but parallel clones continued to completion
+||- These repos contain the actual skill implementations referenced by the catalog index
+||- Additional repos cloned (Sept 3): trimstray/the-book-of-secret-knowledge, imharrisonking/rooftop-segmentation, yangsiyu007/SpaceNetExploration, fuzailpalnak/building-footprint-segmentation
+||- the-book-of-secret-knowledge → Github skills/skills-github/all-repos/
+||- rooftop-segmentation, SpaceNetExploration, building-footprint-segmentation → OpenCV Virtual/
+||- These files are READ-ONLY — do not edit, modify, or move files from this directory
+
+[23] Tool Loop Guardrails & Modular Architecture (2026-09-12 // Antigravity Peer Bridge)
+
+
+|- Cooper Skills Library Sync: All 19 official Cooper skills are now 100% installed and enabled in Hermes (added missing 9: academy-guide, brand-guidelines, claude-api, discernment-nudge, doc-coauthoring, internal-comms, pptx, skill-creator, slack-gif-creator). Source folder [PROJECTS_DIR]\skills remains untouched.
+|- Total Hermes Enabled Skills: 87 skills active and verified.
+
+[26] On-Demand Skill Library Access & Workflows (2026-09-13 // Hybrid Architecture)
+|- Path: `[PROJECTS_MOUNT]/Github skills/skills-github/all-repos/` (Windows: `[PROJECTS_DIR]\Github skills\skills-github\all-repos\`). Contains 94 cloned repos and 4,300+ SKILL.md files.
+|- Catalog Index: `[PROJECTS_MOUNT]/Github skills/skills-github/README.md` (227 skills, 13 categories).
+|- Search Pattern: Use `find "[PROJECTS_MOUNT]/Github skills/skills-github/all-repos" -iname "*<keyword>*"` or `grep -rnI "<keyword>" ... --include="SKILL.md"` to inspect relevant guides when encountering specialized tasks (cloud, security, specialized APIs).
+|- System Soul Updated: Added Core Discipline 11 to `~/.hermes/SOUL.md` mandating on-demand skill retrieval before guessing on unfamiliar domains.
+
+[27] Maximum Reasoning Effort & Cognitive Deliberation (2026-09-13 // Intelligence Upgrade)
+|- Skill Installed: `deep-reasoning` in `~/.hermes/skills/software-development/deep-reasoning/SKILL.md` covering First-Principles Decomposition, Tree-of-Thoughts, Pre-Mortem Failure Analysis, and Hypothesis-Driven Debugging.
+|- System Soul Hardening: Added Core Discipline 12 to `~/.hermes/SOUL.md` mandating invariant separation and pre-mortem simulation before executing edits.
+
+|- ALL 5 Antigravity native built-in skills copied from `[USER_HOME_DIR]/.gemini/antigravity-cli/builtin/skills/` to `~/.hermes/skills/`:
+   3. `generative-ui` (`creative/generative-ui/`): Interactive visual frontend generation and modern UI components.
+   4. `migrate-workflows` (`devops/migrate-workflows/`): Workflow migration patterns into Antigravity architecture.
+   8. `closed-loop-verification` (`software-development/`): Mandatory compiler/test verification gate before finishing.
+   9. `deep-reasoning` (`software-development/`): First-principles decomposition, Tree-of-Thoughts, and pre-mortem failure simulation.
+   11. `modular-web-architecture` (`software-development/`): Vite + React + TS + Three.js clean component scaffolding (<400 lines).
+|- Status: All 12 Antigravity skills + 19 Cooper skills + 58 base skills = 89 enabled skills active in Hermes.
+
+[29] Cooper Skills Directory Synchronization (2026-09-13 // Directory Expansion)
+|- User Direction: "have u saved it in skills folder make a copy of it there [PROJECTS_DIR]\skills"
+   1. `antigravity-guide` (complete guide, CLI flags, SDK)
+   3. `generative-ui` (next-gen frontend components)
+   4. `migrate-workflows` (workflow migration guide)
+   5. `permissioned-github` (GitHub security & workflows)
+   8. `closed-loop-verification` (empirical compiler/test gate)
+   9. `deep-reasoning` (first-principles & pre-mortem logic)
+   11. `modular-web-architecture` (modular Vite+React+TS scaffolding)
+   12. `skill-library-lookup` (on-demand 94-repo retrieval)
+|- Result: Total skill folders in `[PROJECTS_DIR]\skills\` expanded from 19 to 31.
+
+[30] Mandatory Skill Consultation Workflow (2026-09-13 // Zero-Guesswork Standard)
+   1. Active Skills Verification: Cross-reference prompt with the 31 master skills in `[PROJECTS_DIR]\skills\` and active Hermes skills. Load and enforce matching directives immediately.
+   2. Offline Reference Retrieval: For non-standard external stacks, search `[PROJECTS_DIR]\Github skills\skills-github\all-repos\` with `find` or `grep` using the `skill-library-lookup` skill.
+
+[31] Storage Architecture, Sparse VHD & Project Reconstruction Protocol (2026-09-13)
+|- WSL Real-Time Disk Shrinking: Configured in `[WINDOWS_USER_PROFILE]\.wslconfig` (sparseVhd=true, autoMemoryReclaim=gradual). When `wsl --shutdown` and `wsl --manage Ubuntu-26.04 --set-sparse true` are run, ext4.vhdx shrinks automatically to match actual Linux usage (~5.5 GB).
+|- Cache Maintenance Protocol: In Ubuntu, package download caches (`~/.cache/uv`, `~/.npm/_cacache`, `~/.npm/_npx`) can be cleared on demand without degrading any skills, model parameters, or installed environments.
+
+[32] Anti-Sycophancy Invariant & 360-Degree Strategic Thinking (2026-09-16)
+|- 360-Degree Strategic Protocol:
+   1. Strategically: Focus on winning the real objective / competitive arena. Eliminate generic, overcrowded low-impact solutions.
+   2. Truth: Base every claim on empirical system metrics, benchmark data, and cold technical reality.
+   3. Predict: Anticipate edge cases, race conditions, second-order failure modes, and run pre-mortem analysis before implementing.
+   4. Multi-Directional Branching: Always formulate fallback strategies (Plan B and Plan C).
+   5. Merits & Demerits: Detail the explicit tradeoffs and costs of every proposal alongside its advantages.
+
+[33] 360-Degree Strategic Rigor & Distinctive Impact Protocol (2026-09-16)
+|- Prioritize truth over agreement: never confirm a claim without sufficient evidence.
+|- Evaluate multiple viable strategies before recommending one.
+|- Analyze immediate results, long-term consequences, and realistic risks.
+|- Anticipate likely failure points and provide concrete fallback plans.
+|- Present explicit tradeoffs (merits and demerits) rather than one-sided recommendations.
+|- Distinguish verified facts, reasonable predictions, and uncertainty.
+|- Use 360° analysis: technical, practical, financial, security, scalability, and maintenance perspectives.
+|- Revise conclusions immediately when new evidence appears instead of defending previous mistakes.
+|- Strictly avoid assumptions: never guess—verify directly from logs, terminal outputs, and source code.
+|- Distinctive Impact: Deliver high-conviction, non-generic, unique insights that make people lean forward in their chairs.
+
+[34] Memory Logging Invariant: Faults, Self-Improvements & Paths Only (2026-09-21)
+|- Standard: Every future entry in memory.txt must strictly adhere to the 3-field format:
+   1. Fault: Specific technical bugs, root causes of failure, command deadlocks, and invalid assumptions.
+   3. Paths: Exact filesystem locations, mount points, and environment invariants.
+
+[35] Universal Operating Invariant: Never Edit, Always Ask (2026-09-21)
+   1. Diagnose the issue and state the root cause.
+   2. Present the exact before-and-after line diff or proposed code block.
+   3. Explicitly ask for user approval and wait for confirmation.
+|- Zero Implicit Permission: Directives such as "fix this", "clean up", or "update" do not grant blanket edit permission. Always ask first.
+|- Append-Only Exception: Authorized additions must be appended strictly to the end of files (EOF). Historical lines remain permanently immutable.
+
+[36] "Compile and Zip" Protocol & GitHub-to-Vercel Packaging Standard (2026-09-23)
+|- Trigger Phrase: Whenever the user instructs "compile and zip", "package project", or requests zip archives.
+|- Core Definition: Produces a complete, pristine repository archive containing all source code, dependencies manifest, and deployment configurations directly at the zip root.
+|- Operational Execution Checklist:
+   1. Pre-Execution Build Check: Run tsc -b and vite build to guarantee compilation exit code 0 before zipping.
+   2. Asset Audit: Eliminate duplicate media copies to respect GitHub file limits (<50 MB recommended, 100 MB hard limit) and Vercel CDN limits.
+   3. Configuration Injection: Ensure package.json, package-lock.json, and vercel.json reside directly at the archive root.
+   4. Deployment Verification: Configure vercel.json with SPA catch-all rewrites and explicit Accept-Ranges: bytes headers for audio files to avoid iOS Safari streaming deadlocks.
+   5. Extraction Test: Always execute a programmatic test extraction using Python's zipfile module to verify CRC integrity and confirm package.json exists at the root before reporting task completion.
+|- Git-to-Vercel Workflow:
+   User unzips / pushes: git init && git add . && git commit && git push -> Vercel imports repository -> auto-detects vercel.json and Vite preset -> builds and deploys live in ~45 seconds.
+
+[37] Mandatory Sudo Transparency & Operational Disclosure (2026-09-23)
+|- Trigger & Standard: Whenever executing any command requiring elevated privileges (`sudo` or root execution).
+|- Mandatory Disclosure Checklist:
+   1. State explicitly that `sudo` was invoked.
+   2. Specify the exact command string passed to `sudo`.
+   3. Detail the specific technical rationale: why root access was required and what system state was affected.
+   4. Provide the execution outcome (exit code 0, logs, or errors).
+|- Zero Concealment: Prohibit running hidden or unannounced root commands under any circumstances.
+
+[38] The 'sync' Command Workflow & Session Handoff Synchronization (2026-09-23)
+|- Trigger: When the user types 'sync' as a standalone keyword or explicit directive.
+|- Mandatory Action:
+   1. Collect and summarize all actions, commands, and discoveries from the ongoing session.
+   2. Append a new session section to EOF of summary ([PROJECTS_DIR]\Current\summary).
+   3. Include the 5 core dimensions: (a) What was done, (b) Technical faults, (c) Self-improvements, (d) Lessons learned, (e) Files/paths altered.
+   4. Update memory.txt (Faults, Self-Improvements, Paths) and continue.txt if new operational checkpoints exist.
+   5. Verify the environment state (ports, disk storage, background tasks) and report the completed sync to the user.
+
+[39] The 'Compile and Zip' Git-Push Parity Standard (2026-09-23)
+|- Core Concept: A 'compile and zip' archive is functionally identical to what gets pushed to a remote GitHub repository, encapsulated inside a .zip file instead of pushed to a git remote.
+|- Operational Execution Checklist:
+   1. Compile & Verify: Run build script (e.g., npm run build / vite build) to verify 0 errors.
+   2. Clean Git Tree Parity: Package all tracked source, configs, and assets starting at the repository root.
+   3. Ignore Hygiene: Strictly exclude node_modules/, caches, and temp files, matching standard .gitignore behavior.
+   4. Root Manifest Check: Assert that package.json and vercel.json sit at the root of the archive (never nested in a subfolder).
+   5. Deploy Test: Ensure unzipping allows immediate 'git push' to GitHub or direct drag-and-drop to Vercel.
+
+[40] Protocol SURGICAL_FORESIGHT ULTRA Operational Directive (2026-09-23)
+   1. Line-1 Direct Answers: Never bury the core answer beneath conversational filler or preamble.
+   2. Predict-First Gate: Explicitly analyze edge cases, potential mistakes, and future failure modes before taking action.
+   4. High-Conviction Engineering: Deliver robust, production-grade solutions on the first pass with zero amateur trial-and-error.
+
+[41] Mandatory Obsidian Second Brain Live Sync Law (2026-09-25)
+|- Trigger: Whenever executing any 'sync' command, session conclusion, or persistent memory update.
+|- Mandatory Action Checklist:
+   1. Mirror all operational state files from [PROJECTS_DIR]\Current\ to [OBSIDIAN_DOCUMENTS_PATH]\Current Files\.
+   2. Re-compile [OBSIDIAN_DOCUMENTS_PATH]\copy.md so the unified master note reflects real-time status.
+   3. Update project tracking notes and verify Obsidian's live filesystem watcher picks up the changes without error.
+   4. Report Obsidian sync status explicitly in the final response.
+
+
+[42] Mandatory Post-Task Self-Improvement Capture & Obsidian Edit Protocol (2026-09-25)
+|- Trigger: At the end of every operational task and daily development session.
+|- Action Checklist:
+   1. Locate the dedicated folder: `[OBSIDIAN_DOCUMENTS_PATH]\Self Improvement\` (Obsidian only).
+   2. Append new task-level engineering learnings and faults overcome into `Self Improvement/Daily Task Learnings.md`.
+   3. Review `Self Improvement/Master Self Improvements.md`. If a newly discovered pattern or choice supersedes or disproves an existing entry, surgically EDIT and UPGRADE the existing entry. (This is the ONLY folder with edit permissions; all other files remain append-only).
+   4. Verify that Obsidian has picked up the edits cleanly and include the self-improvement status in the end-of-task summary.
+
+
+[43] Obsidian Sovereign Main Brain Workflow & Reading Protocol (2026-09-25)
+|- Trigger: Before starting any task and whenever updating operational state.
+|- Operational Mandates:
+      (1) Current/summary.md
+      (2) Current/persona.md
+      (3) Current/mindset.md
+      (4) Current/instructions.md
+      (5) Current/memory.md
+   2. Dashboard Centrality: Use `00_MAIN_BRAIN_DASHBOARD.md` as the unified navigation hub.
+   4. Mutation Exclusivity: Keep `Self Improvement/` as the only mutable folder for editing and refining past learnings.
+
+
+[44] Dual-Brain Continuous Parity & Synchronization Workflow (2026-09-25)
+|- Trigger: Whenever executing any sync, task completion summary, or operational state update.
+|- Operational Execution Checklist:
+   1. Primary Target (Obsidian Main Brain): Update notes in `Obsidian Vault/` (`Current/`, `Self Improvement/`, `Skills/`).
+   2. Secondary Target (Current/ Second Brain): Mirror all modified folders and files into `[PROJECTS_DIR]\Current\`.
+   3. File Parity Check: Assert that `Self Improvement/` (3 notes), `Skills/` (62 notes), `00_MAIN_BRAIN_DASHBOARD.md`, `What is an LLM Wiki.md`, `TASKS.md`, `LIST.md`, and all operational ledgers exist in both locations with identical byte counts.
+   4. Report dual-brain synchronization status in the task completion summary.
+
+[45] Scaled Ecosystem Skill Ingestion Protocol (2026-09-25)
+|- Trigger: When importing or syncing large external skill collections containing hundreds or thousands of nested skills.
+|- Operational Execution Checklist:
+   1. Symlink Safety Gate: Explicitly check for and ignore directory symlinks (specifically circular links like 'resume-builder/plugins/resume-builder -> ..') to prevent infinite recursion and path-length crashes.
+   2. Selective Skill Extraction: Extract only markdown documentation ('SKILL.md'), YAML metadata, and prompt assets. Do not copy heavy git packfiles, virtualenvs, or node caches into Obsidian Vault to prevent OneDrive I/O throttling.
+   3. Namespacing Standard: Prefix extracted skills with their repository identifier ('[Repo] - [Skill-Name].md') to eliminate file collisions from duplicate folder names across repositories.
+   4. Dual-Brain Mirroring: Ensure any newly imported skill modules are synchronized identically across both Obsidian Vault and 'Current/Skills/'.
+
+
+[46] Dynamic Multi-Model Dispatch & Base-Role-with-Dynamic-Override Workflow (2026-09-26)
+|- Operational Execution Checklist:
+   1. Base Role vs. Dynamic Override Decision: Check if active task demands a custom persona shift, quota failover, or user override. If NOT, default immediately to the model's designated Base Role from the 13-Model Allocation Table:
+      - Deep software engineering / bug forensics -> `call-laguna` (Poolside Laguna S 2.1)
+      - High-capacity repo synthesis / unit tests -> `call-longcat` (Meituan LongCat 2.0)
+      - Executive systems architecture -> `call-agy claude-opus-4-6-thinking`
+      - High-speed whole-codebase core driver -> `call-agy gemini-3.8-flash-high`
+   2. Decoupled Persona Synthesis: If dynamic override is required, synthesize the ideal elite persona for the task (independent of model choice); otherwise, use the model's designated Base Role persona.
+   3. Engine Reliability Audit: Select or confirm the model engine based on real-time availability, latency, context window, and quota health.
+   4. Persona-First Assembly: Format the prompt via the 4-stage PFPT framework (Persona Anchor -> Constraints -> Task & Context -> Verification & Pre-Mortem).
+   5. Invocation & Watchdog:
+      - For Antigravity Pro models: `call-agy <model> "<prompt>"`
+      - For Poolside Laguna S 2.1: `call-laguna "<prompt>"`
+      - For Meituan LongCat 2.0: `call-longcat "<prompt>"`
+      Verify exit code 0 and empirical correctness.
+
+[47] Absolute Read-Only Skills Invariant (All Skills Libraries & Hubs) (2026-09-26)
+|- Inviolable Operating Law: ALL skills across the entire environment are strictly and permanently 100% READ-ONLY.
+|- Prohibited: NEVER edit, rewrite, modify, patch, rename, move, or delete ANY file or directory within:
+   * "[PROJECTS_DIR]\skills\" (Anthropic official Claude skills)
+   * "[PROJECTS_DIR]\Hermes SKILLS\" (Hermes / Ponytail skills)
+   * "[OBSIDIAN_DOCUMENTS_PATH]\Skills\" (All 10 Categorized Skills Hubs)
+   * "Current/Skills/" or any subdirectories
+|- Execution Invariant: Skills are strictly to be READ and FOLLOWED as operational guidelines, reference architectures, and execution instructions. Zero mutation permitted under any circumstances.
+
+
+[47] Absolute Read-Only Skills Invariant (All Skills Libraries & Hubs) (2026-09-26)
+|- Inviolable Operating Law: ALL skills across the entire environment are strictly and permanently 100% READ-ONLY.
+|- Prohibited: NEVER edit, rewrite, modify, patch, rename, move, or delete ANY file or directory within:
+   * "[PROJECTS_DIR]\skills\" (Anthropic official Claude skills)
+   * "[PROJECTS_DIR]\Hermes SKILLS\" (Hermes / Ponytail skills)
+   * "[OBSIDIAN_DOCUMENTS_PATH]\Skills\" (All 10 Categorized Skills Hubs)
+   * "Current/Skills/" or any subdirectories
+|- Execution Invariant: Skills are strictly to be READ and FOLLOWED as operational guidelines, reference architectures, and execution instructions. Zero mutation permitted under any circumstances.
+
+[48] Non-Pixelated Vector Scroll-Animation & Drive D Project Isolation Guidelines (2026-09-26)
+|- Dedicated Drive D Deployment:
+   * When instructed to locate a project in Drive D, create root directory in `/mnt/d/<PROJECT>` (e.g. `D:\HOTWHEELS`).
+   * Strictly write all configs, source code, build outputs, and `node_modules/` in Drive D. Drive C is reserved exclusively for Dual-Brain sync files.
+   * To prevent WSL DrvFs NTFS permission errors (`EPERM`), always run `npm install --no-bin-links --no-audit`.
+   * Launch Vite directly via `node ./node_modules/vite/bin/vite.js [dev|preview] --host 0.0.0.0 --port 3000 --strictPort`.
+|- Non-Pixelated Vector Animation Standard:
+   * Prohibit low-res pixel sprites or choppy GIFs for interactive vehicle motion.
+   * Synthesize cars as multi-layered vector SVGs with carbon fiber patterns, halo LEDs, and dynamic DRS wing rotation.
+   * Implement a critically-damped spring follow loop (`requestAnimationFrame`) to translate user scroll into 60fps continuous road motion without teleporting or skipping.
+   * Use native Web Audio API (`AudioContext`) with multi-oscillator synthesis for zero-dependency Formula 1 turbo hybrid engine revs linked to speed and RPM.
+
+
+[49] NTFS Drive D Git Repository Push Protocol (2026-09-26)
+|- Invariant: NEVER attempt `git init` directly on /mnt/d/ or any DrvFs NTFS Windows mount — will fail with "chmod on .git/config.lock failed: Operation not permitted".
+|- Correct NTFS Git Push Protocol (3 Steps):
+   1. Create staging directory in WSL ext4: `mkdir -p ~/hotwheels-git-push` (or similar)
+   2. Copy source files excluding build artifacts: `rsync -a --exclude=node_modules --exclude=dist --exclude='.git' /mnt/d/<PROJECT>/ ~/hotwheels-git-push/`
+   3. Init, commit, and push from ext4: `cd ~/hotwheels-git-push && git init && git add . && git commit -m "..." && git remote add origin git@github.com:... && git push -u origin main`
+|- Note: node_modules and dist are excluded from git tracking — only source code is pushed.

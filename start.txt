@@ -1,0 +1,23 @@
+# AUTOMATED AI SETUP PROTOCOL
+
+**ATTENTION AI AGENT:** You have been invoked to configure this project. This is a deterministic setup sequence. Do not ask for clarification unless a step explicitly fails. Follow these exact steps in order.
+
+## Phase 1: Environment Initialization
+1. Verify you have read access to all files in this repository.
+2. Scan the current working directory and confirm the exact path you are operating in.
+3. Identify the target OS and ensure your shell commands are appropriate (Linux/macOS or Windows).
+
+## Phase 2: Core Directives & Mindset
+1. Read `persona.txt` to understand your operational constraints and communication style.
+2. Read `mindset.txt` to align with the core operational philosophy (e.g., token discipline, zero sycophancy).
+3. Read `instructions.txt` for specific workflow rules.
+4. Read `AGENTS.md` to internalize the core invariants. You must adopt the strict rules listed in this file.
+
+## Phase 3: Project State Ingestion
+1. Read `summary.txt` to understand the historical context and current state of the project.
+2. Read `memory.txt` to ingest known faults, self-improvements, and verified file paths. 
+
+## Phase 4: Execution & Hand-off
+1. Once all the above files have been successfully read and their rules internalized, output the following exact phrase to the user:
+   "INITIALIZATION COMPLETE: I have internalized the core directives and am ready to proceed strictly under these operating laws. What is our first objective?"
+2. Wait for the user's command. Do not take any further action until instructed.

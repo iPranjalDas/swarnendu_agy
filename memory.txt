@@ -1,0 +1,36 @@
+Memory Index
+=============
+Location: "[PROJECTS_DIR]\Current\memory.txt" and "[OBSIDIAN_DOCUMENTS_PATH]\memory.txt"
+Last Initialized: 2026-09-30
+
+[1] User Profile
+- User: Swarnendu
+- Communication Style: Direct, concise communicator — short commands, zero fluff, builder-to-builder candor
+- Performance Standard: World-class principal engineer depth, high-conviction surgical precision, empirical evidence-first verification
+- Core Working Modality: Dominating calm persona, deep calculated thinking, unshakable calm during debugging and execution
+
+[2] System & Filesystem Paths (Persistent Environment Invariants)
+- WSL2 Linux User Home: [USER_HOME_DIR] (e.g., /home/swarnendu)
+- Windows Host User Profile: [WINDOWS_USER_PROFILE] (e.g., C:\Users\[WINDOWS_USER])
+- Windows Documents Path: [WINDOWS_DOCUMENTS_PATH]
+- Obsidian Vault (Primary Main Brain): [OBSIDIAN_DOCUMENTS_PATH] (e.g., C:\Users\[WINDOWS_USER]\Documents\Obsidian Vault\)
+- Local Projects Directory (Second Brain): [PROJECTS_DIR] (e.g., C:\PROJECTS\ or /mnt/d/swarnendu agy/)
+- Active Configuration: [PROJECTS_DIR]\Current\ (or /mnt/d/swarnendu agy/)
+- Skills Directories: [PROJECTS_DIR]\skills\ and [PROJECTS_DIR]\Hermes SKILLS\ (Strictly 100% READ-ONLY)
+- Storage & Virtual Environments: [PROJECTS_DIR]\storage\venv\ (isolated packages only)
+- WSL Config: [WINDOWS_USER_PROFILE]\.wslconfig (sparseVhd=true, autoMemoryReclaim=gradual)
+
+[3] Core Architectural Invariants & Operating Laws
+
+[4] Technical Faults Ledger (Initialized Blank)
+- Status: Initialized clean. Ready to record specific technical mistakes, bugs, command deadlocks, and failed assumptions.
+- Entry Schema:
+  * Fault ID: #
+  * Symptom / Command Deadlock:
+  * Root Cause Analysis:
+  * Concrete Fix & Recovery:
+
+[5] Self-Improvements Ledger (Initialized Blank)
+- Entry Schema:
+  * Improvement ID: #
+  * Engineering Domain:
